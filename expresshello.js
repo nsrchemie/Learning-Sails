@@ -1,14 +1,22 @@
-// load express module.
-var express = require("express");
+var express = require('express');
 var app = express();
-// Always use express inbuilt router.
+
 var router = express.Router();
+
 router.get('/',function(req,res){
- // Express determines the common header type.
- res.end("<h1>Hello World</h1>");
+	res.sendFile(__dirname + '/index.html');
 });
-// This will navigate all router to proceed /home
+
+app.use(function(req,res,next) {
+	console.log('Route is ' + req.path + ' and type is ' + req.method);
+	next();
+})
+
 app.use('/home',router);
+
 app.listen(3000);
-console.log("Listening at Port 3000");
+
+console.log('Listening at Port 3000');
+
+console.log('ASDASDAD');
 
